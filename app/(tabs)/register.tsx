@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, TouchableOpacity, View, Alert } from 'react-native';
+import { StyleSheet, TextInput, TouchableOpacity, View, Alert, ScrollView, Dimensions } from 'react-native';
 import { useRouter } from 'expo-router';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
@@ -24,97 +24,102 @@ export default function RegisterScreen() {
     ]);
   };
 
-  function setActiveTab(arg0: string): void {
-    throw new Error('Function not implemented.');
-  }
-
   return (
-    <ThemedView style={styles.container}>
-      <ThemedView style={styles.cardContainer}>
-        <View style={styles.tabContainer}>
-          <TouchableOpacity
-            style={[styles.tab]}
-            onPress={() => router.push('/')}
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <ThemedView style={styles.container}>
+        <ThemedView style={styles.cardContainer}>
+          <View style={styles.tabContainer}>
+            <TouchableOpacity
+              style={[styles.tab]}
+              onPress={() => router.push('/')}
+            >
+              <ThemedText style={styles.tabText}>Login</ThemedText>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.tab, styles.activeTab]}
+              onPress={() => {}}
+            >
+              <ThemedText style={[styles.tabText, styles.activeTabText]}>Register</ThemedText>
+            </TouchableOpacity>
+          </View>
+
+          <ThemedText style={styles.fontLabel}>Name</ThemedText>
+          <TextInput
+            style={styles.input}
+            placeholder="Name"
+            value={name}
+            onChangeText={setName}
+          />
+
+          <ThemedText style={styles.fontLabel}>Phone</ThemedText>
+          <TextInput
+            style={styles.input}
+            placeholder="Phone"
+            value={phone}
+            onChangeText={setPhone}
+            keyboardType="phone-pad"
+          />
+
+          <ThemedText style={styles.fontLabel}>Email</ThemedText>
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            value={email}
+            onChangeText={setEmail}
+          />
+
+          <ThemedText style={styles.fontLabel}>Password</ThemedText>
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            secureTextEntry={true}
+            value={password}
+            onChangeText={setPassword}
+          />
+
+          <ThemedText style={styles.fontLabel}>Confirm Password</ThemedText>
+          <TextInput
+            style={styles.input}
+            placeholder="Confirm Password"
+            secureTextEntry={true}
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+          />
+
+          <ThemedText style={styles.fontLabel}>Role</ThemedText>
+          <Picker
+            selectedValue={role}
+            style={styles.input}
+            onValueChange={(itemValue) => setRole(itemValue)}
           >
-            <ThemedText style={styles.tabText}>Login</ThemedText>
+            <Picker.Item label="Orangtua" value="Orangtua" />
+            <Picker.Item label="Anak" value="Anak" />
+            <Picker.Item label="Helper" value="Pengasuh" />
+          </Picker>
+
+          <TouchableOpacity style={styles.button} onPress={handleRegister}>
+            <ThemedText style={styles.buttonText}>Register</ThemedText>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.tab, styles.activeTab]}
-            onPress={() => setActiveTab('register')}
-          >
-            <ThemedText style={[styles.tabText, styles.activeTabText]}>Register</ThemedText>
-          </TouchableOpacity>
-        </View>
-
-        <ThemedText style={styles.fontLabel}>Name</ThemedText>
-        <TextInput
-          style={styles.input}
-          placeholder="Name"
-          value={name}
-          onChangeText={setName}
-        />
-
-        <ThemedText style={styles.fontLabel}>Phone</ThemedText>
-        <TextInput
-          style={styles.input}
-          placeholder="Phone"
-          value={phone}
-          onChangeText={setPhone}
-          keyboardType="phone-pad"
-        />
-
-        <ThemedText style={styles.fontLabel}>Email</ThemedText>
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          value={email}
-          onChangeText={setEmail}
-        />
-
-        <ThemedText style={styles.fontLabel}>Password</ThemedText>
-        <TextInput
-          style={styles.input}
-          placeholder="Password"
-          secureTextEntry={true}
-          value={password}
-          onChangeText={setPassword}
-        />
-
-        <ThemedText style={styles.fontLabel}>Confirm Password</ThemedText>
-        <TextInput
-          style={styles.input}
-          placeholder="Confirm Password"
-          secureTextEntry={true}
-          value={confirmPassword}
-          onChangeText={setConfirmPassword}
-        />
-
-        <ThemedText style={styles.fontLabel}>Role</ThemedText>
-        <Picker
-          selectedValue={role}
-          style={styles.input}
-          onValueChange={(itemValue) => setRole(itemValue)}
-        >
-          <Picker.Item label="Orangtua" value="Orangtua" />
-          <Picker.Item label="Anak" value="Anak" />
-          <Picker.Item label="Helper" value="Pengasuh" />
-        </Picker>
-
-        <TouchableOpacity style={styles.button} onPress={handleRegister}>
-          <ThemedText style={styles.buttonText}>Register</ThemedText>
-        </TouchableOpacity>
+        </ThemedView>
       </ThemedView>
-    </ThemedView>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    minHeight: Dimensions.get('window').height + 200, // Menambahkan 200px untuk membuat scroll lebih banyak
+  },
   container: {
     flex: 1,
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+    width: '100%',
   },
   cardContainer: {
     backgroundColor: '#F1F1F1',
