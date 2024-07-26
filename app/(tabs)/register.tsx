@@ -6,7 +6,8 @@ import { ThemedView } from '@/components/ThemedView';
 import { Picker } from '@react-native-picker/picker';
 
 export default function RegisterScreen() {
-  const [name, setName] = useState('');
+  const [name, setName] = useState(''); 
+
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
