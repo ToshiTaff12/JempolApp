@@ -90,11 +90,13 @@ const styles = StyleSheet.create({
   logoContainer: {
     alignItems: 'center',
     marginBottom: 30,
+    backgroundColor: 'white'
   },
   logo: {
     width: 100,
     height: 100,
     marginBottom: 10,
+    backgroundColor: 'white'
   },
   appName: {
     fontSize: 24,
