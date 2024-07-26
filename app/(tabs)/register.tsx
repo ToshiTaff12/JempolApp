@@ -97,7 +97,7 @@ export default function RegisterScreen() {
         >
           <Picker.Item label="Orangtua" value="Orangtua" />
           <Picker.Item label="Anak" value="Anak" />
-          <Picker.Item label="Helper" value="Helper" />
+          <Picker.Item label="Helper" value="Pengasuh" />
         </Picker>
 
         <TouchableOpacity style={styles.button} onPress={handleRegister}>
