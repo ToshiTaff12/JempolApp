@@ -6,10 +6,15 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const { width } = Dimensions.get('window');
 
+const rewards = [
+  { id: 1, name: 'Nama Reward', thumbs: 0, limit: '1/1', image: null },
+  { id: 2, name: 'Nama Reward', thumbs: 0, limit: '1/1', image: null },
+];
+
 const TaskItem = () => (
   <View style={styles.taskItem}>
     <Text style={styles.taskTitle}>List item</Text>
-    <Text style={styles.taskDescription}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, cumque!</Text>
+    <Text style={styles.taskDescription}>Supporting line text lorem ipsum dolor sit amet, consectetur.</Text>
   </View>
 );
 
@@ -33,7 +38,7 @@ export default function App() {
           <AntDesign name="arrowleft" size={35} color="black" />
         </TouchableOpacity>
         <View style={styles.sidebarItemsContainer}>
-          <Link href="/dashboard" style={styles.sidebarLink}>
+          <Link href="/dashboardAnak" style={styles.sidebarLink}>
             <View style={[styles.sidebarItem, styles.activeSidebarItem]}>
               <Feather name="home" size={30} color="black" />
               <Text style={styles.sidebarText}>Dashboard</Text>
@@ -51,7 +56,7 @@ export default function App() {
               <Text style={styles.sidebarText}>Rewards</Text>
             </View>
           </Link>
-          <Link href="/profile" style={styles.sidebarLink}>
+          <Link href="/profileAnak" style={styles.sidebarLink}>
             <View style={styles.sidebarItem}>
               <Feather name="user" size={30} color="black" />
               <Text style={styles.sidebarText}>Profile</Text>
@@ -66,28 +71,35 @@ export default function App() {
           </TouchableOpacity>
           <View style={styles.userInfo}>
             <Text style={styles.userName}>Nama User</Text>
-            <Text style={styles.userRole}>Orang Tua</Text>
+            <Text style={styles.userRole}>Anak</Text>
           </View>
           <View style={styles.profileIcon}></View>
         </View>
         <Text style={styles.dashboardTitle}>DASHBOARD</Text>
         <View style={styles.taskSection}>
           <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Task Anak</Text>
-            <TouchableOpacity style={styles.addButton}>
-              <AntDesign name="pluscircleo" size={24} color="#000" />
-            </TouchableOpacity>
+            <Text style={styles.sectionTitle}>Task</Text>
+            <View style={styles.taskProgress}>
+              <Text style={styles.completedTaskText}>0/3 Completed</Text>
+              <Text style={styles.resetText}>Reset setiap hari</Text>
+            </View>
           </View>
           <TaskItem />
           <TaskItem />
           <TaskItem />
         </View>
-        <View style={styles.taskSection}>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Task Pengasuh</Text>
-            <TouchableOpacity style={styles.addButton}>
-              <AntDesign name="pluscircleo" size={24} color="#000" />
-            </TouchableOpacity>
+        <View style={styles.rewardsSection}>
+          <Text style={styles.sectionTitle}>Rewards</Text>
+          <View style={styles.rewardsContainer}>
+            {rewards.map((reward) => (
+              <View key={reward.id} style={styles.rewardCard}>
+                <View style={styles.imagePlaceholder}>
+                  <Text style={styles.imageText}>FOTO REWARD</Text>
+                </View>
+                <Text style={styles.rewardName}>{reward.name}</Text>
+                <Text style={styles.rewardInfo}>{reward.thumbs} Jempol</Text>
+              </View>
+            ))}
           </View>
         </View>
       </ScrollView>
@@ -98,8 +110,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
-    paddingTop: 10,
+    backgroundColor: 'white',
   },
   sidebarItemsContainer: {
     flex: 1,
@@ -149,48 +160,48 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
   },
+  scrollView: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
   header: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 10,
-    paddingBottom: 18,
-    padding: 20,
-    backgroundColor: '#e0f7ff',
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    marginTop: 10,
+    backgroundColor: '#E3F2FD', // Ubah warna background header menjadi biru
   },
   menuIcon: {
-    width: 30,
-    height: 30,
-    backgroundColor: '#000',
-    borderRadius: 5,
-    marginTop: 10,
+    marginRight: 10,
   },
   userInfo: {
     alignItems: 'center',
+    marginLeft: 'auto',
   },
   userName: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
   },
   userRole: {
     fontSize: 14,
-    color: 'gray',
+    color: 'grey',
   },
   profileIcon: {
     width: 40,
     height: 40,
     backgroundColor: '#ccc',
-    borderRadius: 15,
+    borderRadius: 20,
+    marginLeft: 10,
   },
   dashboardTitle: {
     fontSize: 24,
     fontWeight: 'bold',
     paddingHorizontal: 15,
-    paddingBottom: 10,
-    marginTop: 15,
+    paddingVertical: 10,
   },
   taskSection: {
-    backgroundColor: '#e0f7ff',
+    backgroundColor: '#e3f2fd',
     marginHorizontal: 15,
     marginVertical: 10,
     borderRadius: 10,
@@ -206,18 +217,21 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
-  addButton: {
-    justifyContent: 'center',
-    alignItems: 'center',
+  taskProgress: {
+    alignItems: 'flex-end',
   },
-  addButtonText: {
-    fontSize: 24,
-    lineHeight: 24,
+  completedTaskText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  resetText: {
+    fontSize: 12,
+    color: 'grey',
   },
   taskItem: {
-    backgroundColor: '#d1c4e9',
+    backgroundColor: '#bbdefb',
     borderRadius: 10,
-    padding: 15,
+    padding: 10,
     marginVertical: 5,
   },
   taskTitle: {
@@ -225,6 +239,47 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   taskDescription: {
+    fontSize: 14,
+    color: '#666',
+  },
+  rewardsSection: {
+    marginHorizontal: 15,
+    marginVertical: 10,
+    borderRadius: 10,
+    padding: 15,
+    backgroundColor: '#e3f2fd', // Tambahkan warna biru pada card container
+    opacity: 0.5, // Tambahkan transparansi 50%
+  },
+  rewardsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  rewardCard: {
+    width: '48%',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    padding: 10,
+    alignItems: 'center',
+  },
+  imagePlaceholder: {
+    width: 80,
+    height: 80,
+    backgroundColor: '#e0e0e0',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  imageText: {
+    fontSize: 12,
+    color: '#757575',
+  },
+  rewardName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  rewardInfo: {
     fontSize: 14,
     color: '#666',
   },

@@ -43,7 +43,7 @@ export default function ProfileScreen() {
           <AntDesign name="arrowleft" size={35} color="black" />
         </TouchableOpacity>
         <View style={styles.sidebarItemsContainer}>
-          <Link href="/dashboard" style={styles.sidebarLink}>
+          <Link href="/dashboardAnak" style={styles.sidebarLink}>
             <View style={styles.sidebarItem}>
               <Feather name="home" size={30} color="black" />
               <Text style={styles.sidebarText}>Dashboard</Text>
@@ -117,34 +117,12 @@ export default function ProfileScreen() {
               <Text style={styles.familyMemberName}>Nama User</Text>
               <Text style={styles.familyMemberRole}>Role User</Text>
             </View>
-            <TouchableOpacity style={styles.syncButton} onPress={handleLogoutPress}>
-              <Feather name="log-out" size={24} color="black" />
-            </TouchableOpacity>
           </View>
           <View style={styles.familyMember}>
             <TouchableOpacity style={styles.circleButton}></TouchableOpacity>
             <View style={styles.familyInfo}>
               <Text style={styles.familyMemberName}>Nama User</Text>
-              <Text style={styles.familyMemberRole}>Role User</Text>
-            </View>
-            <TouchableOpacity style={styles.syncButton}>
-              <Feather name="log-out" size={24} color="black"></Feather>
-            </TouchableOpacity>
-          </View>
-          <Text style={styles.sectionTitle}>PENDING REQUEST</Text>
-          <View style={styles.pendingRequest}>
-            <TouchableOpacity style={styles.circleButton}></TouchableOpacity>
-            <View style={styles.familyInfo}>
-              <Text style={styles.pendingRequestName}>Nama User</Text>
-              <Text style={styles.pendingRequestRole}>Role User</Text>
-            </View>
-            <View style={styles.requestButtons}>
-              <TouchableOpacity style={styles.approveButton}>
-                <Entypo name="check" size={24} color="black" />
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.rejectButton}>
-                <Entypo name="cross" size={24} color="black" />
-              </TouchableOpacity>
+              <Text style={styles.familyMemberRole}>Pengasuh</Text>
             </View>
           </View>
         </View>
@@ -191,30 +169,6 @@ export default function ProfileScreen() {
               >
                 <Text style={styles.buttonText}>Simpan</Text>
               </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
-
-        <Modal
-          animationType="slide"
-          transparent={true}
-          visible={logoutModalVisible}
-          onRequestClose={() => {
-            setLogoutModalVisible(!logoutModalVisible);
-          }}
-        >
-          <View style={styles.modalContainer}>
-            <View style={styles.logoutModalContent}>
-              <Text style={styles.modalReminderTitle}>Reminder!</Text>
-              <Text style={styles.modalReminderText}>Apakah anda yakin ingin mengeluarkan Nama User dari Family?</Text>
-              <View style={styles.modalButtons}>
-                <TouchableOpacity style={styles.yesButton} onPress={() => setLogoutModalVisible(false)}>
-                  <Text style={styles.buttonText}>Yes</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.noButton} onPress={() => setLogoutModalVisible(false)}>
-                  <Text style={styles.buttonText}>No</Text>
-                </TouchableOpacity>
-              </View>
             </View>
           </View>
         </Modal>

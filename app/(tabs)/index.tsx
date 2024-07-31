@@ -15,7 +15,16 @@ export default function HomeScreen() {
       Alert.alert('Login Successful', 'Welcome to the app!', [
         { text: 'OK', onPress: () => router.push('/dashboard') },
       ]);
-    } else {
+    } else if (email === 'anak1@gmail.com' && password === 'anak123') {
+      Alert.alert('Login Successful', 'Welcome to the app, Anak!', [
+        { text: 'OK', onPress: () => router.push('/dashboardAnak') },
+      ]);
+    } else if (email === 'pengasuh@gmail.com'  && password === 'pengasuh123') {
+      Alert.alert('Login Successful', 'Welcome to the app!', [
+        {text: 'OK', onPress: () => router.push('/dashboardPengasuh') },
+      ]);
+    }
+    else {
       Alert.alert('Login Failed', 'Incorrect email or password.');
     }
   };
@@ -190,4 +199,3 @@ const styles = StyleSheet.create({
     color: 'black',
   },
 });
-
